@@ -1,5 +1,7 @@
 '''
-Para começar, use os comandos "exemplo1()" ou "exemplo2()"
+#Como usar:
+from Solveq import *
+exemplo1()
 '''
 nums='1234567890.'
 ops='+-*/'

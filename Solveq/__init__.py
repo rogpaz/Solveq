@@ -472,7 +472,32 @@ def escalona_matriz(m1,b1):
         cnt2=cnt2+1
     cnt1=cnt1+1
   return (m,b)
+
+def trocaind(vet,pos1,pos2):
+  tmp=vet[pos1]
+  vet[pos1]=vet[pos2]
+  vet[pos2]=tmp
+def resolvediag(m,b):
+  cnt1=0
+  while cnt1<len(m):
+    cnt2=0
+    while cnt2<len(m[cnt1]):
+      if m[cnt1][cnt2]==0:
+        cnt3=0
+        poss=[]
+        while cnt3<len(m):
+          if m[cnt3][cnt2]!=0 and m[cnt1][cnt3]!=0:
+            trocaind(m,cnt1,cnt3)
+            trocaind(b,cnt1,cnt3)
+          cnt3=cnt3+1
+      cnt2=cnt2+1
+    cnt1=cnt1+1
+  return (m,b)
+
 def metodo1(m1,b1): # eliminação de gauss
+  m1b1=resolvediag(m1,b1)
+  m1=m1b1[0]
+  b1=m1b1[1]
   mb=escalona_matriz(m1,b1)
   m=mb[0]
   b=mb[1]

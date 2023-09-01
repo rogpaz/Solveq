@@ -7,7 +7,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.0.1'
+VERSION = '0.0.2'
 DESCRIPTION = 'Solver para sistema linear de equações algébricas'
 LONG_DESCRIPTION = 'Use "from Solveq import *" para importar a biblioteca e "exemplo1()" para ver um exemplo de uso'
 

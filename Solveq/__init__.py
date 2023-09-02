@@ -473,25 +473,60 @@ def escalona_matriz(m1,b1):
     cnt1=cnt1+1
   return (m,b)
 
-def trocaind(vet,pos1,pos2):
-  tmp=vet[pos1]
-  vet[pos1]=vet[pos2]
-  vet[pos2]=tmp
+def incmat(m,lim):
+  final=len(m)-1
+  while final>=0:
+    m[final]=m[final]+1
+    if m[final]>=lim[final]:
+      m[final]=0
+      final=final-1
+    else:
+      return m
+def verificadiag(m):
+  cnt=0
+  while cnt<len(m):
+    if m[cnt][cnt]==0:
+      return True
+    cnt=cnt+1
+  return False
 def resolvediag(m,b):
+  poss=[]
+  trocas=[0]*len(m)
   cnt1=0
+  matcopia=list(m)
+  bcopia=list(b)
   while cnt1<len(m):
     cnt2=0
-    while cnt2<len(m[cnt1]):
-      if m[cnt1][cnt2]==0:
-        cnt3=0
-        poss=[]
-        while cnt3<len(m):
-          if m[cnt3][cnt2]!=0 and m[cnt1][cnt3]!=0:
-            trocaind(m,cnt1,cnt3)
-            trocaind(b,cnt1,cnt3)
-          cnt3=cnt3+1
+    poss.append([])
+    while cnt2<len(m):
+      if m[cnt2][cnt1]!=0:
+        poss[cnt1].append(cnt2)
       cnt2=cnt2+1
     cnt1=cnt1+1
+  lim=[]
+  for i in poss:
+    lim.append(len(i))
+  cnt1=0
+  while cnt1<len(trocas):
+    cnt2=cnt1+1
+    while cnt2<len(trocas):
+      if poss[cnt2][trocas[cnt2]]==poss[cnt1][trocas[cnt1]]:
+        trocas=incmat(trocas,lim)
+        #print(trocas)
+        cnt1=-1
+        cnt2=len(trocas)
+      cnt2=cnt2+1
+    cnt1=cnt1+1
+  while verificadiag(m):
+    cnt1=0
+    while cnt1<len(trocas):
+      matcopia[cnt1]=m[poss[cnt1][trocas[cnt1]]]
+      bcopia[cnt1]=b[poss[cnt1][trocas[cnt1]]]
+      cnt1=cnt1+1
+    m=list(matcopia)
+    b=list(bcopia)
+    #print('matriz')
+    #print(m)
   return (m,b)
 
 def metodo1(m1,b1): # eliminação de gauss

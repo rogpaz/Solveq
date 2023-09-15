@@ -594,12 +594,32 @@ def substituiinc(eq,nomes,nomesl1):
       eq=eq[:eq.index(nomes[cnt])]+nomesl1[cnt]+eq[eq.index(nomes[cnt])+len(nomes[cnt]):]
     cnt=cnt+1
   return eq
-def resolve_sistema(lista_eqs,nomes=[]):
+def resolve_sistema(lista_eqs):
   nomesl1='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
   tmp=[]
   for i in nomesl1:
     tmp.append(i)
   nomesl1=tmp
+
+  reservados='1234567890.+-*/()='
+  incs=[]
+  for i in lista_eqs:
+      cnt1=0
+      while cnt1<len(i):
+          if i[cnt1] not in reservados: #é incógnita
+              cnt2=cnt1
+              while cnt2<len(i) and i[cnt2] not in '.+-*/()=':
+                  cnt2=cnt2+1
+              if cnt2<len(i):
+                  incog=i[cnt1:cnt2]
+              else:
+                  incog=i[cnt1:]
+              cnt1=cnt2
+              if incog not in incs:
+                  incs.append(incog)
+          cnt1=cnt1+1
+  nomes=incs
+  
   if len(nomes)!=0:
     cnt1=0
     while cnt1<len(lista_eqs):

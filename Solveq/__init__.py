@@ -634,14 +634,23 @@ def resolve_sistema(lista_eqs):
                   incs.append(incog)
           cnt1=cnt1+1
   nomes=incs
-  
+  nomes2=[]
+  cnt=0
+  for i in nomes:
+    nomes2.append('_____'+str(cnt)+'_____')
+    cnt=cnt+1
   if len(nomes)!=0:
     cnt1=0
     while cnt1<len(lista_eqs):
-      lista_eqs[cnt1]=substituiinc(lista_eqs[cnt1],nomes,nomesl1)
+      lista_eqs[cnt1]=substituiinc(lista_eqs[cnt1],nomes,nomes2)
+      cnt1=cnt1+1
+    cnt1=0
+    while cnt1<len(lista_eqs):
+      lista_eqs[cnt1]=substituiinc(lista_eqs[cnt1],nomes2,nomesl1)
       cnt1=cnt1+1
   else:
     nomes=nomesl1
+  #print(lista_eqs)
   termos=[]
   inc={}
   for i in lista_eqs:
@@ -683,8 +692,8 @@ def exemplo1():
   print("'1.3*y+2.9*z+1.6*x+2*w=2.3*w-3',")
   print("'1.7*x+2*z+0.2*w=4-y'")
   print(']')
-  print('resolve_sistema(eqs)')
-  print()
+  print('res=resolve_sistema(eqs)')
+  print("print(res)")
   print('#Reportar bugs para rogpaz1998@gmail.com')
 def exemplo2():
   print("eq1='(8+9*3/4)+(2*3+y)*(2+3*1)+(2*3)*(2+3*1)+10.3*2+3*x-(12+3*2)+(2*3)*(2+3*1)=4*(x+y+2*3/6*10*(2+30-49*2*3*4*1*10/100)*1*3/10)+(2*3)*(2+3*1*x)*2-3*2*90/3+(2*3)*(2+3*1)'")
@@ -692,8 +701,8 @@ def exemplo2():
   print("eq3='2*3*x*1+2*4+(2*3+90)*3-10+3*x+2*(2*2+x+y+3*2)*1.5-2*4+z+k+w=21'")
   print("eq4='2.3*x+1.3*y+1.2*z+0.9*w=1'")
   print("eq5='(1+2*9-3*5)*(23+3*10.4-100)*4*z/2+w*10/(1+5+5*5/5)+k*3*2+(1+2*9-3*5-2*2)*3*0*2*1*(10-4)*(23+3*10.4-100+4)*(10-4)*(23+3*10.4-100+4)*(10-4)*(23+3*10.4-100+4)*(23+3*10.4-100+4)*(10-4)*(23+3*10.4-100+4)+(1+2*9-3*5-2*(2+3*9*(2-4*4*3-100*x)*3+2*(9-2)*1.4)*3)*(23+3*10.4-100*0)+(1+2*9-3*5-y)*(23+3*10.4*0-100)*3/(2+3*9*(3-1+8*3/(2+2-10/(2+3))))+4*(1-3*x)+x*(2+5*4)-(1-3*x)*4+(2+5-4)*x+x-(2-3*(3*3+1-(9*1)))=(1+2*9-3*5)*(23+3*10.4-100)+5*(2+3*x)+3*2+x*(9*10+1-40)-(1+2*9-3*5)*(23+3*10.4-100)*4+(1+2*9-3*5-2*2)*3*0*2*1*(10-4)*(23+3*10.4-100+4)*(10-4)*(23+3*10.4-100+4)*(10-4)*(23+3*10.4-100+4)*(23+3*10.4-100+4)*(10-4)*(23+3*10.4-100+4)+(1+2*9-3*5-2*(2+3*9*(2-4*4*3-100*x)*3+2*(9-2)*1.4)*3)*(23+3*10.4-100*0)+(1+2*9-3*5-y)*(23+3*10.4*0-100)*3+4*(1-3*x)+x*(2+5*4)-(1-3*x)*4+(2+5-4)*x+x-(2-3*(3*3+1-(9*1)))'")
-  print("eq=resolve_sistema([eq1,eq2,eq3,eq4,eq5])")
-  print()
+  print("res=resolve_sistema([eq1,eq2,eq3,eq4,eq5])")
+  print(print("res"))
   print('#Reportar bugs para rogpaz1998@gmail.com')
 def exemplo3():
   print('eqs=[')
@@ -702,6 +711,6 @@ def exemplo3():
   print("'1.3*x2+2.9*x3+1.6*x1+2*x4=2.3*x4-3',")
   print("'1.7*x1+2*x3+0.2*x4=4-x2'")
   print(']')
-  print("resolve_sistema(eqs)")
-  print()
+  print("res=resolve_sistema(eqs)")
+  print("print(res)")
   print('#Reportar bugs para rogpaz1998@gmail.com')

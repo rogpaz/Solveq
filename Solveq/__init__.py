@@ -230,6 +230,16 @@ def corrigemenos(eq):
       eq[cnt1+1]=-eq[cnt1+1]
     cnt1=cnt1+1
   return eq
+def corrigemaismenos(eq):
+  vret=[]
+  cnt1=0
+  while cnt1<len(eq):
+    if eq[cnt1]=='+':
+      if eq[cnt1+1]=='-':
+          eq=eq[:cnt1]+['-']+eq[cnt1+2:]
+          cnt1=-1
+    cnt1=cnt1+1
+  return eq
 def reduz1(eq):
   vret=[]
   cnt1=0
@@ -552,8 +562,13 @@ def metodo1(m1,b1): # eliminação de gauss
 def resolvem(eq):
   #eq=separa_termos(eq)     #transforma string em lista
   eq=corrigediv1(eq)
+  #print(eq)
   eq=corrigepar(eq)         #1* antes dos parentesis
+  #print(eq)
+  eq=corrigemaismenos(eq)   #['+','-',valor] vira ['-',valor]
+  #print(eq)
   eq=corrigemenos(eq)       #['-',valor] vira ['+',-valor]
+  #print(eq)
   eq=reduz1(eq)             #aqui não tem mais (...)*(...)
   eq=eq+['+',0]
   while eq!=multiplica_rl_par(eq):
@@ -656,11 +671,9 @@ def resolve_sistema(lista_eqs):
     cnt=cnt+1
   resultados=metodo1(matriz,b)
   cnt=0
-  ret=[]
   while cnt<len(matriz):
-    ret.append(nomes[nomesl1.index(list(inc.keys())[1:][cnt])]+'='+str(resultados[cnt]))
+    print(nomes[nomesl1.index(list(inc.keys())[1:][cnt])]+'='+str(resultados[cnt]))
     cnt=cnt+1
-  return ret
 def exemplo1():
   print('eqs=[')
   print("'2.3*x+1.3*y+1.2*z+0.9*w=1-x',")

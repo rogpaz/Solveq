@@ -656,9 +656,11 @@ def resolve_sistema(lista_eqs):
     cnt=cnt+1
   resultados=metodo1(matriz,b)
   cnt=0
+  ret=[]
   while cnt<len(matriz):
-    print(nomes[nomesl1.index(list(inc.keys())[1:][cnt])]+'='+str(resultados[cnt]))
+    ret.append(nomes[nomesl1.index(list(inc.keys())[1:][cnt])]+'='+str(resultados[cnt]))
     cnt=cnt+1
+  return ret
 def exemplo1():
   print('eqs=[')
   print("'2.3*x+1.3*y+1.2*z+0.9*w=1-x',")

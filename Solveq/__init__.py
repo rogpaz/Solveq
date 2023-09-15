@@ -685,6 +685,6 @@ def exemplo3():
   print("'1.3*x2+2.9*x3+1.6*x1+2*x4=2.3*x4-3',")
   print("'1.7*x1+2*x3+0.2*x4=4-x2'")
   print(']')
-  print("resolve_sistema(eqs,nomes=['x1','x2','x3','x4'])")
+  print("resolve_sistema(eqs)")
   print()
   print('#Reportar bugs para rogpaz1998@gmail.com')
